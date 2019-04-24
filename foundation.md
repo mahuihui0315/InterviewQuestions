@@ -6,7 +6,7 @@
 Java Development Kit，java开发包，面向编程人员，内含JRE（Java Runtime Environmen）包括client和server端，使用前需要配置环境变量
 
 ### JRE
-Java Runtime Environmen，java运行环境，顾名思义就是java程序运行所必需的，会自动配置环境变量，并不面向编程，知识提供运行环境
+Java Runtime Environmen，java运行环境，顾名思义就是java程序运行所必需的，会自动配置环境变量，并不面向编程，只是提供运行环境
 
 ## ==和equals的区别
 
@@ -14,7 +14,7 @@ Java Runtime Environmen，java运行环境，顾名思义就是java程序运行�
 判断两个对象或者引用是否指向内存中的同一位置，即判断是否是同一个对象
 
 ### equals
-一般判断两个对象是否值是否相同，可有开发人员重写以自定义判断条件
+一般判断两个对象是否值是否相同，可由开发人员重写以自定义判断条件
 
 ## hashCode()相同，equals()是否为true
 不一定，两个不同对象通过hashcode函数获取的值有可能相同
