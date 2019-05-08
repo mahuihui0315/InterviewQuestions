@@ -77,3 +77,64 @@ map不同于list和set，并不是collection的实现类，而是一个单独的
 3. 保证插入的元素的唯一性，则set的实现类比较适合
 4. 如要用到键值对的存储方式，可以从map的实现类中选择合适的
 
+## HashMap 的实现原理
+基本原理：数组+链表+红黑树
+
++ Entry数组：用于存储key-value对，每一个key-value就是一个Entry实体
++ Entry类：本质是是一个链表，具有Next属性用于指向下一个Entry。
+因为key-value的存储位置是由key的hashcode决定的，因此可能回出现位置相同的情况，此时就可以使用Next来解决位置冲突
++ 红黑树：JDK8以后引入，当链表过长时会转化成红黑树
+
+## HashSet 的实现原理
+hashset是基于hashmap实现的，底层使用hashmap实现
+
+## ArrayList 和 LinkedList 的区别
+
+### 在末尾增加元素
++ ArrayList: 
+   + 底层实现是数组, 初始化时会有一定的容量, 当容量未满时插入效率很高, 但是一旦容量不够就需要扩容, 基本原理是复制当前
+的数组元素到一个新的更大容量的数组, 此时效率很低
++ LinkList:
+   + 底层实现是一个双向链表, 新增元素时不需要考虑容量问题, 效率一直很高
+
+### 在中间增减元素
++ ArrayList:
+   + 插入位置之后的元素都需要向后移动, 效率很差, 插入越靠前越是如此
++ LinkList:
+   + 对于链表来说在任何位置插入元素的效率都很高
+
+### 移除任意元素
++ ArrayList:
+   + 移除元素和插入元素一样, 都需要重组数组, 因此效率不高, 且越靠前越差
++ LinkList:
+   + 链表移除元素需要先遍历寻找目标元素的位置, 因此效率会和链表的长度以及元素的位置相关
+   
+### 访问任意元素
++ ArrayList: 
+   + 数组可以通过下标快速访问元素, 效率很高
++ LinkList: 
+   + 链表每次访问数据都要进行遍历操作, 十分费时
+   
+## 数组和 List 之间的转换
++ 数组转List: Arrays的asList()
++ List转数组: toArray()
+
+## ArrayList 和 Vector 的区别
++ ArrayList: 
+   1. 非线程安全, 因此效率更高
+   2. 扩容时会增加50%的容量
++ Vector:
+   1. 线程安全, 效率稍差
+   2. 扩容时会增加100%的容量
+   
+## Array 和 ArrayList 的区别
+1. Array可以包含基本类型和对象类型, ArrayList只能包含对象类型
+2. Array容量固定, ArrayList容量会动态改变
+3. ArrayList提供了更多操作数据的方法
+
+## Queue 中 poll()和 remove()的区别
++ poll(): 移除队列顶端的元素, 当队列为空时返回null
++ remove(): 移除队列顶端的元素, 当队列为空时抛出异常
+
+## 使一个集合不能被修改
+使用Collections.unmodifiableList(List<? extends T> list)
